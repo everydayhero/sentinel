@@ -30,6 +30,11 @@
 
   "bin": {
     "hubot": "./bin/hubot"
+  },
+
+  "engines": {
+    "node": "0.6.18",
+    "npm": "1.1.9"
   }
 }
 
