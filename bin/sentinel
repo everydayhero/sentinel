@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 
-HUBOT="node_modules/hubot/bin/hubot"
-HUBOT_NAME="Sentinel"
+HUBOT_PATH="node_modules/hubot"
+HUBOT="bin/hubot"
+CWD=$PWD
 
+export HUBOT_NAME="Sentinel"
+
+cd $HUBOT_PATH
 $HUBOT $@
+cd $CWD
