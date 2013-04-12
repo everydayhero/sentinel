@@ -1,1 +1,1 @@
-web: bin/hubot -a campfire -n Sentinel
+web: bin/sentinel -a campfire

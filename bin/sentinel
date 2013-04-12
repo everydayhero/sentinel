@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-HUBOT="./node_modules/hubot/bin/hubot"
+HUBOT="node_modules/hubot/bin/hubot"
 HUBOT_NAME="Sentinel"
 
 $HUBOT $@
