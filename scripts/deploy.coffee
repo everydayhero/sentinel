@@ -35,10 +35,14 @@ module.exports = (robot) ->
       if exists
         msg.send "Deploying #{app} to #{env}..."
 
+        commencedAt = new Date()
         exec cmd, {cwd: path, env: process.env}, (error, stdout, stderr) =>
           deployments[app] = false
           if error == null
-            msg.reply "Successfully deployed #{app} to #{env}"
+            completedAt = new Date()
+            duration = completedAt - commencedAt
+            minutes = duration / 1000 / 60
+            msg.reply "Successfully deployed #{app} to #{env}. It took #{minutes} minutes to complete."
           else
             msg.reply "Failed to deploy #{app} to #{env}"
 
