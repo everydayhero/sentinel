@@ -15,10 +15,11 @@ Fs = require 'fs'
 exec = require('child_process').exec
 
 module.exports = (robot) ->
-  deployPath = process.env.DEPLOY_PATH or '%{application}'
-  deployCmd = process.env.DEPLOY_COMMAND or 'cap deploy -S environment=%{environment} -S branch=%{branch}'
+  deployPath    = process.env.DEPLOY_PATH    or '%{application}'
+  deployCmd     = process.env.DEPLOY_COMMAND or 'cap deploy -S environment=%{environment} -S branch=%{branch}'
   defaultBranch = process.env.DEFAULT_BRANCH or 'master'
-  deployments = {}
+  excludeEnvs   = (process.env.EXCLUDE_ENV   or 'production').split(':')
+  deployments   = {}
 
   robot.respond /deploy (\w+)\s*(\(\w+\))? to (\w+)/i, (msg) ->
     app = msg.match[1]
@@ -27,6 +28,10 @@ module.exports = (robot) ->
 
     if deployments[app]
       msg.reply "I'm already deploying #{app} to #{deployments[app]}."
+      return
+
+    if excludeEnvs.indexOf(env) isnt -1
+      msg.reply "Sorry but I'm not allowed to deploy to #{env}."
       return
 
     deployments[app] = env
