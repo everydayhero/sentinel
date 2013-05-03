@@ -20,7 +20,7 @@ module.exports = (robot) ->
   defaultBranch = process.env.DEFAULT_BRANCH or 'master'
   deployments = {}
 
-  robot.respond /deploy (\w+)\s*(\(\w+\)) to (\w+)/i, (msg) ->
+  robot.respond /deploy (\w+)\s*(\(\w+\))? to (\w+)/i, (msg) ->
     app = msg.match[1]
     bra = (msg.match[2] or defaultBranch).replace /(^\(|\)$)/, ''
     env = msg.match[3]
@@ -51,4 +51,4 @@ module.exports = (robot) ->
             msg.reply "Failed to deploy #{app} to #{env}"
 
       else
-        msg.send "Could not find application \"#{app}\""
+        msg.send "Could not find application \"#{app}\"."
