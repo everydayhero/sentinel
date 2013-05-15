@@ -52,7 +52,8 @@ Parser.on "version", (opt, value) ->
 
 Parser.parse process.argv
 
-Hubot.path = Path.resolve __dirname, "..", "node_modules", "hubot"
+rootPath = Path.resolve __dirname, ".."
+Hubot.path = Path.resolve rootPath, "node_modules", "hubot"
 adapterPath = Path.join Hubot.path, "src", "adapters"
 
 robot = Hubot.loadBot adapterPath, Options.adapter, Options.enableHttpd, Options.name
@@ -70,23 +71,23 @@ loadScripts = ->
   scriptsPath = Path.resolve Hubot.path, "src", "scripts"
   robot.load scriptsPath
 
-  scriptsPath = Path.resolve ".", "scripts"
+  scriptsPath = Path.resolve rootPath, "scripts"
   robot.load scriptsPath
 
-  hubotScripts = Path.resolve ".", "hubot-scripts.json"
+  hubotScripts = Path.resolve rootPath, "hubot-scripts.json"
   Fs.exists hubotScripts, (exists) ->
     if exists
       Fs.readFile hubotScripts, (err, data) ->
         if data.length > 0
           try
             scripts = JSON.parse data
-            scriptsPath = Path.resolve "node_modules", "hubot-scripts", "src", "scripts"
+            scriptsPath = Path.resolve rootPath, "node_modules", "hubot-scripts", "src", "scripts"
             robot.loadHubotScripts scriptsPath, scripts
           catch err
             console.error "Error parsing JSON data from hubot-scripts.json: #{err}"
             process.exit(1)
 
-  externalScripts = Path.resolve ".", "external-scripts.json"
+  externalScripts = Path.resolve rootPath, "external-scripts.json"
   Fs.exists externalScripts, (exists) ->
     if exists
       Fs.readFile externalScripts, (err, data) ->
@@ -102,7 +103,7 @@ loadScripts = ->
     if path[0] == '/'
       scriptsPath = path
     else
-      scriptsPath = Path.resolve ".", path
+      scriptsPath = Path.resolve rootPath, path
     robot.load scriptsPath
 
 robot.adapter.on 'connected', loadScripts
