@@ -14,6 +14,12 @@
 Fs = require 'fs'
 exec = require('child_process').exec
 
+interpolate = (string, options) ->
+  for key, val of options
+    string = string.replace "%{#{key}}", val
+
+  return string
+
 module.exports = (robot) ->
   deployPath    = process.env.DEPLOY_PATH    or '%{application}'
   deployCmd     = process.env.DEPLOY_COMMAND or 'cap deploy -S environment=%{environment} -S branch=%{branch}'
@@ -35,8 +41,8 @@ module.exports = (robot) ->
       return
 
     deployments[app] = env
-    path = deployPath.replace '%{application}', app
-    cmd = deployCmd.replace('%{environment}', env).replace('%{branch', bra)
+    path = interpolate deployPath, application: app
+    cmd = interpolate deployCmd, environment: env, branch: bra
 
     Fs.exists path, (exists) =>
       if exists
@@ -53,6 +59,7 @@ module.exports = (robot) ->
             msg.reply "Successfully deployed #{app} to #{env}. It took #{minutes} minutes to complete."
 
           else
+            console.log error
             msg.reply "Failed to deploy #{app} to #{env}"
 
       else
