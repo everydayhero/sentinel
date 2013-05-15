@@ -6,7 +6,7 @@
 #   DEPLOY_COMMAND
 #
 # Commands:
-#   hubot deploy <application> to <environment>
+#   hubot deploy <application>(<branch>) to <environment>
 #
 # Author:
 #   evilmarty
@@ -27,9 +27,9 @@ module.exports = (robot) ->
   excludeEnvs   = (process.env.EXCLUDE_ENV   or 'production').split(':')
   deployments   = {}
 
-  robot.respond /deploy (\w+)\s*(\(\w+\))? to (\w+)/i, (msg) ->
+  robot.respond /deploy (\w+)\s*(\(.+\))? to (\w+)/i, (msg) ->
     app = msg.match[1]
-    bra = (msg.match[2] or defaultBranch).replace /(^\(|\)$)/, ''
+    bra = (msg.match[2] or defaultBranch).replace /(^\(|\)$)/g, ''
     env = msg.match[3]
 
     if deployments[app]
