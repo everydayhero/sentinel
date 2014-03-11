@@ -1,1 +1,1 @@
-web: bin/sentinel -a campfire
+web: bin/sentinel -a slack

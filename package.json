@@ -1,19 +1,21 @@
 {
   "name": "sentinel",
-  "version": "2.0.0",
+  "version": "2.1.0",
 
-  "respository": {
+  "repository": {
     "type": "git",
     "url": "https://github.com/everydayhero/sentinel.git"
   },
 
   "dependencies": {
-    "hubot": "2.4.8",
-    "hubot-scripts": "2.4.2",
+    "hubot": "~> 2.7.2",
+    "hubot-scripts": "~> 2.5.8",
     "coffee-script": "~> 1.6.1",
-    "optparse": "1.0.3",
-    "htmlparser": "1.7.6",
-    "githubot": "0.2.0"
+    "optparse": "~> 1.0.5",
+    "htmlparser": "~> 1.7.6",
+    "hubot-slack": "~> 2.0.2",
+    "githubot": "~> 0.5.0",
+    "soupselect": "0.2.0"
   },
 
   "engines": {

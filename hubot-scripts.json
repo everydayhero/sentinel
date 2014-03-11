@@ -1,9 +1,19 @@
-["jenkins.coffee",
- "dilbert.coffee",
- "tweet.coffee",
- "cheer.coffee",
- "quote.coffee",
- "walmart.coffee",
- "shipit.coffee",
- "cloudapp.coffee",
- "github-pulls.coffee"]
+[
+  "jenkins.coffee",
+  "dilbert.coffee",
+  "cheer.coffee",
+  "quote.coffee",
+  "walmart.coffee",
+  "shipit.coffee",
+  "cloudapp.coffee",
+  "github-pulls.coffee",
+  "ackbar.cofffee",
+  "gifbin.coffee",
+  "goooood.coffee",
+  "grumpycat.coffee",
+  "http-say.coffee",
+  "http-post-say.coffee",
+  "newrelic.coffee",
+  "spotify.coffee",
+  "trello.coffee"
+]
