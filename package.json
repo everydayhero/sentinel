@@ -10,6 +10,7 @@
   "dependencies": {
     "hubot": "~> 2.7.2",
     "hubot-scripts": "~> 2.5.8",
+    "hubot-cron": "~> 0.1.0",
     "coffee-script": "~> 1.6.1",
     "optparse": "~> 1.0.5",
     "htmlparser": "~> 1.7.6",
